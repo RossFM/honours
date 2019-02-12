@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './index.css';
+//import Form from "./Form";
 
 const API = 'http://localhost:8090/jobs.json';
 //const API = 'https://facebook.github.io/react-native/movies.json';
 
-class BS extends Component {
+class JsonParse extends Component {
   
   constructor(props) {
     super(props);
@@ -39,4 +39,4 @@ class BS extends Component {
   }
 }
 
-export default BS;
+export default JsonParse;

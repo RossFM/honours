@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import BS from './bs'
-import logo from './logo.svg';
+import JsonParse from './JsonParse'
+import Form from './Form'
 import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <BS/>
-      </div>
+      <React.Fragment>
+      <CssBaseline />
+      {<Form/>}
+    </React.Fragment>
     );
   }
 }
 
 export default App;
+
+
