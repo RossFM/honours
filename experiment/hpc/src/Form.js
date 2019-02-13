@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import JsonParse from "./JsonParse";
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
@@ -44,12 +41,47 @@ const styles = theme => ({
     },
   });
 
-
     
-    function SignIn(props) {
-        const { classes } = props;
+    class Form extends Component {
+        constructor(props){
+            super(props);
 
-    
+            this.state = {
+                value: '',
+                isClicked: false
+              };
+
+              
+            
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event) {
+            this.setState({value: event.target.value});
+          }
+
+          handleSubmit(event) {
+            this.setState({ isClicked: true });
+            event.preventDefault();
+          }
+
+
+    renderJson(){
+        console.log(this.state.isClicked)
+        if(this.state.isClicked===true){
+        return(
+            <JsonParse dataValue={this.state.value}/>
+        );
+        }
+    }      
+
+    render() {
+        const { classes } = this.props;
+
+        Form.propTypes = {
+            classes: PropTypes.object.isRequired,
+          };
       return (
         <main className={classes.main}>
       <CssBaseline />
@@ -57,19 +89,11 @@ const styles = theme => ({
         <Typography component="h1" variant="h5">
           Job stats
         </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+        <form className={classes.form} onSubmit={this.handleSubmit}>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="text">Detail</InputLabel>
+            <Input type="text" value={this.state.value} onChange={this.handleChange}/>
+          </FormControl> 
           <Button
             type="submit"
             fullWidth
@@ -77,18 +101,15 @@ const styles = theme => ({
             color="primary"
             className={classes.submit}
           >
-            Sign in
+            Submit
           </Button>
+            {this.renderJson()}
         </form>
       </Paper>
+      
     </main>
       );
     }
-  
+}
 
-  SignIn.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-  
-
-  export default withStyles(styles)(SignIn);
+  export default withStyles(styles)(Form);
