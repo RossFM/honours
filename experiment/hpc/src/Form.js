@@ -61,20 +61,23 @@ const styles = theme => ({
             this.setState({value: event.target.value});
           }
 
-          handleSubmit(event) {
+        handleSubmit(event) {
             this.setState({ isClicked: true });
             event.preventDefault();
           }
 
+        resetButton(){
+            this.setState({isClicked: false});
+        }  
 
-    renderJson(){
+
+        renderJson(){
         console.log(this.state.isClicked)
         if(this.state.isClicked===true){
         return(
             <JsonParse dataValue={this.state.value}/>
-        );
-        }
-    }      
+        );}
+        }      
 
     render() {
         const { classes } = this.props;

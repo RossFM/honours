@@ -9,7 +9,7 @@ class JsonParse extends Component {
     super(props);
 
     this.state = {
-      stuff: []
+      stuff: [],
     }
   }
 
@@ -20,19 +20,20 @@ class JsonParse extends Component {
     );
   }
 
+
   render() {
     var { stuff } = this.state;
-    var arr = Object.values(stuff)
-    var priority = this.props.dataValue
+    var dataArr = Object.values(stuff)
+    var userInput = this.props.dataValue
 
     return (
       <div>
       <ul>
-        {arr.map(item => (
+        {dataArr.map(item => (
           <li key={item.job_id}>
-            {item.command}, {priority}
+            {item.job_id}, {item[userInput]}
           </li>
-          ))}
+        ))}
       </ul>
       </div>
     );
