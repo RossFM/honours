@@ -2,6 +2,7 @@ import pyslurm
 import json
 import sys
 import logging
+import requests
 from flask import Flask, request
 from flask_cors import CORS
 app = Flask(__name__)
@@ -15,16 +16,10 @@ def index():
     return json.dumps(pyslurm.job().get())
 
 
-@app.route("/sam2.json")
+@app.route("/sam.json")
 def hello():
-    json_string = pyslurm.job().get()
-    data = {}
-    data = {"user": "tse"}
-
-    #json_string.update(data)
-    data.update(json_string)
-
-    return json.dumps(data)
+    r = requests.get('https://api.octopus.energy/v1/electricity-meter-points/1800022637626/meters/19P5002854/consumption/')
+    return json.dumps(r)
 
 
 @app.route("/run", methods=["GET", "POST"])

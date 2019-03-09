@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import DropDown from './DropDown';
 
 const styles = theme => ({
     main: {
@@ -95,7 +96,7 @@ const styles = theme => ({
         <form className={classes.form} onSubmit={this.handleSubmit}>
           <FormControl margin="normal" fullWidth>
             <InputLabel htmlFor="text">Detail</InputLabel>
-            <Input type="text" value={this.state.value} onChange={this.handleChange}/>
+            <Input  value={this.state.value} onChange={this.handleChange}/>
           </FormControl> 
           <Button
             type="submit"
@@ -106,8 +107,12 @@ const styles = theme => ({
           >
             Submit
           </Button>
-            {this.renderJson()}
+            
         </form>
+        {this.renderJson()}
+      </Paper>
+      <Paper className={classes.form}>
+      <DropDown/>
       </Paper>
       
     </main>
