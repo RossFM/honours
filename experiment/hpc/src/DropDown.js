@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import JsonParse from './JsonParse';
  
 const options = [
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' }
+	{ value: 'priority', label: 'Priority' },
+	{ value: 'command', label: 'Command' },
+	{ value: 'nodes', label: 'Node' }
   ];
   
   class DropDown extends React.Component {
 	state = {
-	  selectedOption: null,
+	  selectedOption: '',
 	}
 	handleChange = (selectedOption) => {
 	  this.setState({ selectedOption });
 	  console.log(`Option selected:`, selectedOption);
 	}
+
+	renderJson(){
+		return(
+				<JsonParse dataValue={this.state.selectedOption}/>
+		);}  
+
+
 	render() {
 	  const { selectedOption } = this.state;
   
 	  return (
-		<Select
+			<main>
+		<Select 
 		  value={selectedOption}
 		  onChange={this.handleChange}
 		  options={options}
 		/>
-	  );
+		{this.renderJson()}
+		</main>
+		);
 	}
   }
   

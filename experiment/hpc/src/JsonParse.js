@@ -24,14 +24,15 @@ class JsonParse extends Component {
   render() {
     var { stuff } = this.state;
     var dataArr = Object.values(stuff)
-    var userInput = this.props.dataValue
+    var userInput = Object.values(this.props.dataValue)
+    console.log(userInput[0])
 
     return (
       <div>
       <ul>
         {dataArr.map(item => (
           <li key={item.job_id}>
-            {item.job_id}, {item[userInput]}
+            {item.job_id}, {item[userInput[0]]}
           </li>
         ))}
       </ul>

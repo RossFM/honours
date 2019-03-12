@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import DropDown from './DropDown';
+import Select from 'react-select';
 
 const styles = theme => ({
     main: {
@@ -41,6 +42,12 @@ const styles = theme => ({
       marginTop: theme.spacing.unit * 3,
     },
   });
+
+  const options = [
+    { value: 'priority', label: 'priority' },
+    { value: 'command', label: 'command' },
+    { value: 'nodes', label: 'nodes' }
+    ];
 
     
     class Form extends Component {
@@ -82,6 +89,7 @@ const styles = theme => ({
 
     render() {
         const { classes } = this.props;
+        const {thing} = this.props;
 
         Form.propTypes = {
             classes: PropTypes.object.isRequired,
@@ -95,8 +103,11 @@ const styles = theme => ({
         </Typography>
         <form className={classes.form} onSubmit={this.handleSubmit}>
           <FormControl margin="normal" fullWidth>
-            <InputLabel htmlFor="text">Detail</InputLabel>
-            <Input  value={this.state.value} onChange={this.handleChange}/>
+            <Select
+		          value={thing}
+		          onChange={this.handleChange}
+		          options={options}
+		        />
           </FormControl> 
           <Button
             type="submit"
