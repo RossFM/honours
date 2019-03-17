@@ -9,7 +9,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import DropDown from './DropDown';
 import Select from 'react-select';
 
 const styles = theme => ({
@@ -56,7 +55,7 @@ const styles = theme => ({
 
             this.state = {
                 value: '',
-                isClicked: false
+                isClicked: false,
               };
 
               
@@ -65,8 +64,8 @@ const styles = theme => ({
         this.handleSubmit = this.handleSubmit.bind(this);
         }
 
-        handleChange(event) {
-            this.setState({value: event.target.value});
+        handleChange(value) {
+            this.setState({value});
           }
 
         handleSubmit(event) {
@@ -83,13 +82,15 @@ const styles = theme => ({
         console.log(this.state.isClicked)
         if(this.state.isClicked===true){
         return(
+          <CssBaseline>
             <JsonParse dataValue={this.state.value}/>
+          </CssBaseline>
+          //just added in, remove if it's not working
         );}
         }      
 
     render() {
         const { classes } = this.props;
-        const {thing} = this.props;
 
         Form.propTypes = {
             classes: PropTypes.object.isRequired,
@@ -104,7 +105,7 @@ const styles = theme => ({
         <form className={classes.form} onSubmit={this.handleSubmit}>
           <FormControl margin="normal" fullWidth>
             <Select
-		          value={thing}
+		          value={this.state.value}
 		          onChange={this.handleChange}
 		          options={options}
 		        />
@@ -121,9 +122,6 @@ const styles = theme => ({
             
         </form>
         {this.renderJson()}
-      </Paper>
-      <Paper className={classes.form}>
-      <DropDown/>
       </Paper>
       
     </main>

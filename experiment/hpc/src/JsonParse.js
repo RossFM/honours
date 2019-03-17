@@ -10,6 +10,7 @@ class JsonParse extends Component {
 
     this.state = {
       stuff: [],
+      output: []
     }
   }
 
@@ -26,6 +27,7 @@ class JsonParse extends Component {
     var dataArr = Object.values(stuff)
     var userInput = Object.values(this.props.dataValue)
     console.log(userInput[0])
+    console.log(this.state.output)
 
     return (
       <div>
@@ -39,6 +41,7 @@ class JsonParse extends Component {
       </div>
     );
   }
+  
 }
 
 export default JsonParse;
