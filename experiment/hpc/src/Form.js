@@ -43,9 +43,9 @@ const styles = theme => ({
   });
 
   const options = [
-    { value: 'priority', label: 'priority' },
-    { value: 'command', label: 'command' },
-    { value: 'nodes', label: 'nodes' }
+    { value: 'priority', label: 'Priority' },
+    { value: 'command', label: 'Command' },
+    { value: 'nodes', label: 'Nodes' }
     ];
 
     
@@ -57,7 +57,6 @@ const styles = theme => ({
                 value: '',
                 isClicked: false,
               };
-
               
             
         this.handleChange = this.handleChange.bind(this);
