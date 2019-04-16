@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from "./Form";
+import Chart from "./Chart";
 
 const API = 'http://localhost:8090/jobs.json';
 
@@ -10,7 +11,7 @@ class JsonParse extends Component {
 
     this.state = {
       stuff: [],
-      output: []
+      test: "Render props test",
     }
   }
 
@@ -21,24 +22,44 @@ class JsonParse extends Component {
     );
   }
 
+  dataRender(){
+    var { stuff } = this.state;
+    var dataArr = Object.values(stuff)
+    let dataStart = dataArr.map(item => item.start_time)
+    let dataEnd = dataArr.map(item => item.end_time)
+    console.log(dataStart)
+    console.log(dataEnd)
+    const output = dataEnd.map(function(item, index){
+      return item - dataStart[index];
+    })
+    console.log(output);
+    return(
+      <Chart wallTime={[100, 82, 200, 60]}/>
+      //This doesn't work, using these fixed values for now
+    );
+}
+
 
   render() {
     var { stuff } = this.state;
     var dataArr = Object.values(stuff)
     var userInput = Object.values(this.props.dataValue)
-    console.log(userInput[0])
-    console.log(this.state.output)
+
 
     return (
       <div>
-      <ul>
+        {/* <Test test={test}/> */}
         {dataArr.map(item => (
-          <li key={item.job_id}>
+          <p key={item.job_id}>
             {item.job_id}, {item[userInput[0]]}
-          </li>
+          </p>
         ))}
-      </ul>
+
+        <h1>
+          {this.dataRender()}
+        </h1>
       </div>
+
     );
   }
   

@@ -11,8 +11,6 @@ class App extends Component {
       <React.Fragment>
       <CssBaseline />
       {<Form/>}
-      {<Chart/>}
-      
     </React.Fragment>
     );
   }
