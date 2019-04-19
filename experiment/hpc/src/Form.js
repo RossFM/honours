@@ -78,7 +78,6 @@ const styles = theme => ({
 
 
         renderJson(){
-        console.log(this.state.isClicked)
         if(this.state.isClicked===true){
         return(
           <CssBaseline>
