@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import * as d3 from "d3";
 import JsonParse from "./JsonParse";
 
+const API = 'http://localhost:8090/jobs.json';
+
 class Chart extends Component {
 
   constructor(props) {
@@ -10,17 +12,33 @@ class Chart extends Component {
 
     this.state = {
       isLoaded: false,
-      data: []
+      jobTime: []
     }
   }
     componentDidMount() {
-      this.drawChart();
-      console.log(this.props)
+      fetch(API)
+      .then(response => response.json())
+      .then(data => this.setState({ jobTime: data })
+    );
       }
 
-      drawChart() {
-        const data = [10000,10, 6, 6, 9, 4];
-        //const data = this.props.wallTime;
+      dataRender(){
+        var { jobTime } = this.state;
+        var dataArr = Object.values(jobTime)
+        let dataStart = dataArr.map(item => item.start_time)
+        let dataEnd = dataArr.map(item => item.end_time)
+        const wallTime = dataEnd.map(function(item, index){
+          return item - dataStart[index]
+        })
+        console.log(wallTime)
+        if(wallTime.length > 0){
+        this.drawChart(wallTime);
+        }
+    }
+
+      drawChart(wallTime) {
+        //const data = [10000,10, 6, 6, 9, 4];
+        const data = wallTime;
         const w = 700; //width
         const h = 300; //height
         const svg = d3.select("body")
@@ -34,13 +52,14 @@ class Chart extends Component {
           .enter()
           .append("rect")
           .attr("x", (d, i) => i * 70)
-          .attr("y", (d, i) => h - 0.5 * d)
+          .attr("y", (d, i) => h - 10 * d)
           .attr("width", 65)
-          .attr("height", (d, i) => d * 0.5)
+          .attr("height", (d, i) => d * 10)
           .attr("fill", "green")
       }
             
       render(){
+        this.dataRender();
         return <div id={"#" + this.props.id}>
         </div>
       }

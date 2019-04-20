@@ -12,7 +12,6 @@ class JsonParse extends Component {
 
     this.state = {
       stuff: [],
-      test: "Render props test",
     }
   }
 
@@ -23,21 +22,6 @@ class JsonParse extends Component {
     );
     
   }
-
-  dataRender(){
-    var { stuff } = this.state;
-    var dataArr = Object.values(stuff)
-    let dataStart = dataArr.map(item => item.start_time)
-    let dataEnd = dataArr.map(item => item.end_time)
-    const wallTime = dataEnd.map(function(item, index){
-      return item - dataStart[index]
-    })
-    return(
-      <Chartint wallTime={wallTime}/>
-    )
-}
-
-
 
   render() {
     var { stuff } = this.state;
