@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import * as d3 from "d3";
 import JsonParse from "./JsonParse";
 
-const API = 'http://localhost:8090/jobs.json';
+const API = 'http://localhost:8090/chart.json';
 
 class Chart extends Component {
 
@@ -52,15 +52,17 @@ class Chart extends Component {
           .enter()
           .append("rect")
           .attr("x", (d, i) => i * 70)
-          .attr("y", (d, i) => h - 10 * d)
+          .attr("y", (d, i) => h - 1 * d)
           .attr("width", 65)
-          .attr("height", (d, i) => d * 10)
-          .attr("fill", "green")
+          .attr("height", (d, i) => d * 1)
+          .attr("fill", "purple")
       }
             
       render(){
         this.dataRender();
-        return <div id={"#" + this.props.id}>
+        return <div style={{ padding: "10px 20px"}}>
+        <div id={"#" + this.props.id}>
+        </div>
         </div>
       }
     }

@@ -85,9 +85,9 @@ class Chartint extends PureComponent {
           .data(data)
           .join("rect")
           .attr("x", (d, i) => i * 70)
-          .attr("y", (d, i) => h - 10 * d)
+          .attr("y", (d, i) => h - 0.5 * d)
           .attr("width", 65)
-          .attr("height", (d, i) => d * 10)
+          .attr("height", (d, i) => d * 0.5)
           .attr("fill", "green")
       
     }
