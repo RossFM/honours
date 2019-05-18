@@ -22,6 +22,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart2 from './Chart2';
 import Uptime from './Uptime';
 import NodeStats from './NodeStats';
+import Comp from './Comp.test';
 
 const drawerWidth = 240;
 
@@ -168,9 +169,15 @@ export default function Dashboard() {
               </Paper>
             </Grid>
             {/* Node Stats */}
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Paper className={classes.paper}>
                 <NodeStats />
+              </Paper>
+            </Grid>
+            {/* Experiment */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <Comp />
               </Paper>
             </Grid>
           </Grid>

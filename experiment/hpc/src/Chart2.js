@@ -12,11 +12,11 @@ keep the x axis data static and insert the output of dataRender into the y axis
 */
 
 // Generate Sales Data
-function createData(time, amount) {
-  return { time, amount };
+function createData(x, wallTime) {
+  return { x, wallTime };
 }
 
-function dataRender(){
+function dataRender(x){
   fetch(API)
       .then(response => response.json())
       .then(data => ({ jobTime: data })
@@ -29,18 +29,21 @@ function dataRender(){
     return item - dataStart[index]
   })
   console.log(wallTime)
-  return {wallTime};
+  if(wallTime.length > 0){
+    return {x, wallTime};
+    }
 }
 
 const data = [
   createData('0', 0),
-  createData('1', 100),
-  createData('2', 300),
-  createData('3', 600),
-  createData('4', 800),
+  // createData('1', 100),
+  // createData('2', 300),
+  // createData('3', 600),
+  // createData('4', 800),
 ];
 
 export default function Chart2() {
+  console.log(data)
   return (
     <React.Fragment>
       <Title>Recent Job Times</Title>
@@ -54,13 +57,13 @@ export default function Chart2() {
             left: 24,
           }}
         >
-          <XAxis dataKey="time" />
+          <XAxis dataKey="x" />
           <YAxis>
             <Label angle={270} position="left" style={{ textAnchor: 'middle' }}>
               Time (S)
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke="#556CD6" dot={false} />
+          <Line type="monotone" dataKey="wallTime" stroke="#556CD6" dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
