@@ -7,6 +7,8 @@ class Comp extends Component {
   constructor(props) {
     super(props);
 
+    this.count = 0;
+
     this.state = {
       jobTime: [],
       n: 0
@@ -23,12 +25,13 @@ class Comp extends Component {
     }
 
   createData(x) {
-      var wallTime = this.dataRender(x)
+      var wallTime = this.dataRender()
+
     return { x, wallTime };
   }
 
-  dataRender(x){
-        this.setState(prevState => ({n: prevState.n + 1}))
+  dataRender(){
+      console.log(this.count)
     var dataArr = Object.values(this.state.jobTime)
     let dataStart = dataArr.map(item => item.start_time)
     let dataEnd = dataArr.map(item => item.end_time)
@@ -36,9 +39,9 @@ class Comp extends Component {
       return item - dataStart[index]
     })
     
-    var newData = wallTime[1]
-    console.log(this.state.n)
+    var newData = wallTime[this.count]
     if(wallTime.length > 0){
+        this.count++;
       return newData
       }
   }
@@ -48,7 +51,8 @@ class Comp extends Component {
       const data = [
         //this.dataRender('0')
          this.createData('1'),
-         this.createData('2')
+         this.createData('2'),
+         this.createData('3')
         // createData('2', 300),
         // createData('3', 600),
         // createData('4', 800),

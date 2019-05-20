@@ -19,7 +19,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import green from '@material-ui/core/colors/green';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Chart2 from './Chart2';
 import Uptime from './Uptime';
 import NodeStats from './NodeStats';
 import Comp from './Comp.test';
@@ -159,7 +158,7 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart2 />
+                <Comp />
               </Paper>
             </Grid>
             {/* System Uptime */}
