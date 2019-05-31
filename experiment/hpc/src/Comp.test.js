@@ -52,10 +52,8 @@ class Comp extends Component {
         //this.dataRender('0')
          this.createData('1'),
          this.createData('2'),
-         this.createData('3')
-        // createData('2', 300),
-        // createData('3', 600),
-        // createData('4', 800),
+         this.createData('3'),
+         this.createData('4')
       ];
       console.log(data)
     return (
@@ -77,7 +75,7 @@ class Comp extends Component {
                   Time (S)
                 </Label>
               </YAxis>
-              <Line type="monotone" dataKey="wallTime" stroke="#556CD6" dot={false} />
+              <Line type="linear" dataKey="wallTime" stroke="#8E6BBF" dot={true} />
             </LineChart>
           </ResponsiveContainer>
         </React.Fragment>

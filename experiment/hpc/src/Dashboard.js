@@ -8,25 +8,23 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import green from '@material-ui/core/colors/green';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Uptime from './Uptime';
 import NodeStats from './NodeStats';
 import Comp from './Comp.test';
+import JobsRunning from './JobsRunning'
+import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
+    background: '#F2F2F2',
     display: 'flex',
   },
   toolbar: {
@@ -40,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
+    background: '#457202',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -64,6 +63,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   drawerPaper: {
+    background: '#457202',
+    color: '#FFFFFF',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -106,13 +107,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const [open] = React.useState(true);
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -120,15 +116,6 @@ export default function Dashboard() {
       <CssBaseline />
       <AppBar position="absolute" color="primary" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             H P C
           </Typography>
@@ -141,11 +128,6 @@ export default function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
@@ -175,8 +157,8 @@ export default function Dashboard() {
             </Grid>
             {/* Experiment */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Comp />
+              <Paper className={ classes.paper}>
+                <JobsRunning />
               </Paper>
             </Grid>
           </Grid>

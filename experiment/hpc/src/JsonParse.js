@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component} from 'react';
 import Form from "./Form";
 import Chart from "./Chart";
 import * as d3 from "d3";

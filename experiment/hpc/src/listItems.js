@@ -14,7 +14,7 @@ export const mainListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon color="inherit"/>
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
@@ -35,7 +35,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Additional Information</ListSubheader>
+    <ListSubheader color='inherit' inset>Additional Information</ListSubheader>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
