@@ -1,6 +1,4 @@
-/* eslint-disable no-script-url */
-
-import React from 'react';
+import React, { Component} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
@@ -10,27 +8,37 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
-// Generate Data
-function createData(id, date, name) {
-  return { id, date, name};
-}
+const API = 'http://localhost:8090/nodes.json';
 
-const rows = [
-  createData(0, 'Head Node', 'Up'),
-  createData(1, 'Node 1', 'Up'),
-  createData(2, 'Node 2', 'Up'),
-  createData(3, 'Node 3', 'Down'),
-  createData(4, 'Node 4', 'Up'),
-];
+class NodeStats extends Component {
 
-const useStyles = makeStyles(theme => ({
-  seeMore: {
-    spacing: 4,
-  },
-}));
+  constructor(props) {
+    super(props);
 
-export default function NodeStats() {
-  const classes = useStyles();
+    this.state = {
+      stuff: [],
+    }
+  }
+
+  componentDidMount() {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => this.setState({ stuff: data })
+    );
+    
+  }
+
+  render(){
+    var { stuff } = this.state;
+    var dataArr = Object.values(stuff)
+
+  // const useStyles = makeStyles(theme => ({
+  //   seeMore: {
+  //     spacing: 4,
+  //   },
+  // }));
+
+  //const classes = useStyles();
   return (
     <React.Fragment>
       <Title>Node Stats</Title>
@@ -42,19 +50,20 @@ export default function NodeStats() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell align="right">{row.name}</TableCell>
+          {dataArr.map(item => (
+            <TableRow key={item.name}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell align="right">{item.state}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
+      {/* <div className={classes.seeMore}>
         <Link color="primary" href="javascript:;">
           See more
         </Link>
-      </div>
+      </div> */}
     </React.Fragment>
   );
-}
+}}
+export default NodeStats

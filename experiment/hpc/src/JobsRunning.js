@@ -30,8 +30,7 @@ class JobsRunning extends Component {
     
       render() {
         var { stuff } = this.state;
-        var dataArr = Object.values(stuff)
-        //var userInput = Object.values(this.props.dataValue)
+        var dataArr = Object.values(stuff).reverse()
     
     
         return (
@@ -40,15 +39,27 @@ class JobsRunning extends Component {
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell>User ID</TableCell>
             <TableCell>Job ID</TableCell>
-            <TableCell align="right">Node</TableCell>
+            <TableCell>Node(s)</TableCell>
+            <TableCell>Command</TableCell>
+            <TableCell>Job State</TableCell>
+            <TableCell>Partition</TableCell>
+            <TableCell>Run Time</TableCell>
+            <TableCell>Exit Code</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {dataArr.map(item => (
             <TableRow key={item.job_id}>
+                <TableCell>{item.user_id}</TableCell>
               <TableCell>{item.job_id}</TableCell>
-              <TableCell align="right">{item.nodes}</TableCell>
+              <TableCell>{item.nodes}</TableCell>
+              <TableCell>{item.command}</TableCell>
+              <TableCell>{item.job_state}</TableCell>
+              <TableCell>{item.partition}</TableCell>
+              <TableCell>{item.run_time_str}</TableCell>
+              <TableCell>{item.exit_code}</TableCell>
             </TableRow>
           ))}
         </TableBody>
