@@ -31,7 +31,6 @@ class Comp extends Component {
   }
 
   dataRender(){
-      console.log(this.count)
     var dataArr = Object.values(this.state.jobTime)
     let dataStart = dataArr.map(item => item.start_time)
     let dataEnd = dataArr.map(item => item.end_time)
@@ -56,6 +55,7 @@ class Comp extends Component {
          this.createData('4')
       ];
       console.log(data)
+
     return (
         <React.Fragment>
           <Title>Recent Job Times</Title>
