@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    background: '#457202',
+    background: '#336600',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    background: '#457202',
+    background: '#336600',
     color: '#FFFFFF',
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -145,7 +145,7 @@ export default function Dashboard() {
             </Grid>
             {/* System Uptime */}
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 <Uptime />
               </Paper>
             </Grid>
