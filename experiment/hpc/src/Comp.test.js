@@ -2,35 +2,46 @@ import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
 
+const API = 'http://localhost:8090/chart.json';
+
 class Comp extends Component {
   
   constructor(props) {
     super(props);
 
-    this.count = 0;
+    this.data = [];
 
     this.state = {
-      jobTime: [],
-      n: 0
+      jobTime: []
 
     }
   }
 
   componentDidMount() {
-    const API = 'http://localhost:8090/chart.json';
     fetch(API)
     .then(response => response.json())
     .then(data => this.setState({ jobTime: data })
   );
+
+    }
+
+    manufacture(){
+      this.data = [
+        this.createData('1'),
+        this.createData('2'),
+        this.createData('3'),
+        this.createData('4')
+     ];
+
     }
 
   createData(x) {
-      var wallTime = this.dataRender()
-
+      var wallTime = this.dataRender(x)
     return { x, wallTime };
   }
 
-  dataRender(){
+  dataRender(x){
+    console.log(x)
     var dataArr = Object.values(this.state.jobTime)
     let dataStart = dataArr.map(item => item.start_time)
     let dataEnd = dataArr.map(item => item.end_time)
@@ -38,30 +49,24 @@ class Comp extends Component {
       return item - dataStart[index]
     })
     
-    var newData = wallTime[this.count]
+    var newData = wallTime[x-1]
     if(wallTime.length > 0){
-        this.count++;
       return newData
       }
   }
 
   
   render() {
-      const data = [
-        //this.dataRender('0')
-         this.createData('1'),
-         this.createData('2'),
-         this.createData('3'),
-         this.createData('4')
-      ];
-      console.log(data)
+
+      this.manufacture();
+
 
     return (
         <React.Fragment>
           <Title>Recent Job Times</Title>
           <ResponsiveContainer>
             <LineChart
-              data={data}
+              data={this.data}
               margin={{
                 top: 16,
                 right: 16,

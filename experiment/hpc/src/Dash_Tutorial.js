@@ -12,14 +12,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { mainListItems, secondaryListItems } from './listItems';
-import Uptime from './Uptime';
-import NodeStats from './NodeStats';
-import Comp from './Comp.test';
-import JobsRunning from './JobsRunning'
-import { createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
-import { ThemeProvider } from '@material-ui/styles';
+import Tutorial from './Tutorial'
 
 const drawerWidth = 240;
 
@@ -107,7 +100,7 @@ const useStyles = makeStyles (theme =>({
   },
 }));
 
-export default function Dashboard() {
+export default function Dash_Tutorial() {
   const classes = useStyles();
   const [open] = React.useState(true);
 
@@ -140,27 +133,9 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Comp />
-              </Paper>
-            </Grid>
-            {/* System Uptime */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Uptime />
-              </Paper>
-            </Grid>
-            {/* Node Stats */}
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>
-                <NodeStats />
-              </Paper>
-            </Grid>
-            {/* Experiment */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={ classes.paper}>
-                <JobsRunning />
+                <Tutorial />
               </Paper>
             </Grid>
           </Grid>

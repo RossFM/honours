@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,20 +13,22 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export const mainListItems = (
   <div>
-    <Link to="/" style={{ textDecoration: 'none' }} color="secondary">
+    <NavLink to="/" activeStyle={{ color: 'white' }} style={{ textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <DashboardIcon color="inherit"/>
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    </Link>
+    </NavLink>
+    <NavLink to="/" activeStyle={{ color: 'white' }} style={{ textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <DashboardIcon color="inherit"/>
       </ListItemIcon>
-      <ListItemText primary="Visualisation" />
+      <ListItemText primary="Dashboard" />
     </ListItem>
+    </NavLink>
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />
@@ -39,23 +41,49 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader color='inherit' inset>Additional Information</ListSubheader>
+    <NavLink to="/hpc2" activeStyle={{ color: 'white' }} style={{ color: 'inherit', textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Old page info..." />
+      <ListItemText primary="HPC2" />
     </ListItem>
+    </NavLink>
+    
+    <NavLink to="/tutorial" activeStyle={{ color: 'white' }} style={{ color: 'inherit', textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Old page info..." />
+      <ListItemText primary="Tutorial" />
     </ListItem>
+    </NavLink>
+
+    <NavLink to="/resources" activeStyle={{ color: 'white' }} style={{ color: 'inherit', textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Old page info..." />
+      <ListItemText primary="Resources" />
     </ListItem>
+    </NavLink>
+
+    <NavLink to="/environment" activeStyle={{ color: 'white' }} style={{ color: 'inherit', textDecoration: 'none' }}>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Environment" />
+    </ListItem>
+    </NavLink>
+
+    <NavLink to="/tensor" activeStyle={{ color: 'white' }} style={{ color: 'inherit', textDecoration: 'none' }}>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Tensor Flow / Keras" />
+    </ListItem>
+    </NavLink>
   </div>
 );
